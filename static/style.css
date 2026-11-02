@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+}
+
+body{
+    background-color: #107c73;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding-top: 400px;
+}
+
+.main{
+    width: 60%;
+    height: 800px;
+    background-color: #f1ee12;
+    position: relative;
+    border-radius: 35px;
+    border: 2.5px solid #000000;
+}
