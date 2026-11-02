@@ -17,4 +17,18 @@ body{
     position: relative;
     border-radius: 35px;
     border: 2.5px solid #000000;
+    display: flex;
+    justify-content: center;
+    padding-top: 75px;
+}
+
+#place-input{
+    width: 700px;
+    height: 70px;
+    background-color: #e9e7e7;
+    font-size: 32px;
+    font-family: Arial, sans-serif;
+    border-radius: 30px;
+    border: 2.6px solid #000000;
+    padding-left: 25px;
 }
