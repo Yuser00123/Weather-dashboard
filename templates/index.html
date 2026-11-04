@@ -33,6 +33,10 @@
                     <p id="description">Weather: {{ weather.description }}</p>
                     <p id="humidity">Humidity: {{ weather.humidity }}%</p>
                     <p id="wind">Wind: {{ weather.wind }} km/h</p>
+                    <div class="ai-suggestion">
+                        <h3>AI Suggestion</h3>
+                        <p>{{ ai_suggestion }}</p>
+                    </div>
                 {% else %}
                     <h2 id="city-name">City Name</h2>
                     <p id="temperature">Temperature: --°C</p>

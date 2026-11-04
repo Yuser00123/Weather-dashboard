@@ -5,6 +5,7 @@ import os
 app = Flask(__name__)
 
 API_KEY = os.getenv('API_KEY')
+AI_KEY = os.getenv('AI_KEY')
 
 @app.route('/')
 def home():
@@ -39,9 +40,35 @@ def weather():
         'condition': data['weather'][0]['main'].lower()
     }
 
-    return render_template('index.html', weather=weather_info)
+    ai_suggestion = get_ai_suggestion(weather_info)
+    return render_template('index.html', weather=weather_info, ai_suggestion=ai_suggestion)
 
+def get_ai_suggestion(weather):
+    prompt = (
+        f"The current weather in {weather['city']} is {weather['description']} "
+        f"with temperature {weather['temperature']}°C. "
+        "Give a short and friendly suggestion for what to wear or do today."
+    )
 
+    try:
+        ai_response = requests.post(
+            "https://ai.hackclub.com/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {AI_KEY}",
+                "Content-Type": "application/json"
+            },
+            json={
+                "model": "gpt-4o-mini",
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 100
+            },
+            timeout=10
+        )
+        result = ai_response.json()
+        suggestion = result['choices'][0]['message']['content']
+        return suggestion
+    except Exception:
+        return "AI suggestion is not available right now."
 
 if __name__ == '__main__':
     app.run(debug=True)
