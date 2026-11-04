@@ -19,7 +19,15 @@
                 {% if error %}
                     <p>{{ error }}</p>
                 {% elif weather %}
-                <img src="{{ url_for('static', filename='sunny.png') }}" alt="weather" class="weather-img">
+                    {% if weather.condition == 'clear' %}
+                        <img src="{{ url_for('static', filename='sunny.png') }}" alt="weather" class="weather-img">
+                    {% elif weather.condition == 'clouds' %}
+                        <img src="{{ url_for('static', filename='cloudy.png') }}" alt="weather" class="weather-img">
+                    {% elif weather.condition == 'rain' %}
+                        <img src="{{ url_for('static', filename='rainy.png') }}" alt="weather" class="weather-img">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='cloudy.png') }}" alt="weather" class="weather-img">
+                    {% endif %}
                     <h2 id="city-name">{{ weather.city }}</h2>
                     <p id="temperature">Temperature: {{ weather.temperature }}°C</p>
                     <p id="description">Weather: {{ weather.description }}</p>
