@@ -52,23 +52,23 @@ def get_ai_suggestion(weather):
 
     try:
         ai_response = requests.post(
-            "https://ai.hackclub.com/v1/chat/completions",
+            "https://ai.hackclub.com/proxy/v1/chat/completions",
             headers={
                 "Authorization": f"Bearer {AI_KEY}",
                 "Content-Type": "application/json"
             },
             json={
-                "model": "gpt-4o-mini",
+                "model": "openai/gpt-4o-mini",
                 "messages": [{"role": "user", "content": prompt}],
-                "max_tokens": 100
+                "max_tokens": 65
             },
             timeout=10
         )
         result = ai_response.json()
         suggestion = result['choices'][0]['message']['content']
         return suggestion
-    except Exception:
-        return "AI suggestion is not available right now."
+    except Exception as e:
+        return f"AI error: {str(e)}"
 
 if __name__ == '__main__':
     app.run(debug=True)
