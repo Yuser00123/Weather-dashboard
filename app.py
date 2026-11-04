@@ -35,7 +35,8 @@ def weather():
         'temperature': data['main']['temp'],
         'description': data['weather'][0]['description'],
         'humidity': data['main']['humidity'],
-        'wind': data['wind']['speed']
+        'wind': data['wind']['speed'],
+        'condition': data['weather'][0]['main'].lower()
     }
 
     return render_template('index.html', weather=weather_info)
