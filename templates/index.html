@@ -13,6 +13,7 @@
                 <form action="/weather" method="get">
                 <input type="text" id="place-input" name="city" placeholder="Enter a place">
                 <button id="search-button">Search</button>
+                <button id="unit-toggle" oonclick="toggleUnit()">°C / °F</button>
                 </form>
             </div>
             <div class="output">
@@ -29,7 +30,8 @@
                         <img src="{{ url_for('static', filename='cloudy.png') }}" alt="weather" class="weather-img">
                     {% endif %}
                     <h2 id="city-name">{{ weather.city }}</h2>
-                    <p id="temperature">Temperature: {{ weather.temperature }}°C</p>
+                    <p id="temperature">Temperature: <span id="temp-value" data-temp="{{ weather.temperature }}">{{weather.temperature}}</span><span id="temp-unit">°C</span></p>
+                    <p id="feels-like">Feels like: <span id="feels-value" data-feels="{{ weather.feels_like }}">{{ weather.feels_like }}</span><span id="feels-unit">°C</span></p>
                     <p id="description">Weather: {{ weather.description }}</p>
                     <p id="humidity">Humidity: {{ weather.humidity }}%</p>
                     <p id="wind">Wind: {{ weather.wind }} km/h</p>
@@ -46,5 +48,29 @@
                 {% endif %}
             </div>
         </div>
+        <script>
+            function toggleUnit() {
+                const tempVal = document.getElementById('temp-value');
+                const feelsVal = document.getElementById('feels-value');
+                const tempUnit = document.getElementById('temp-unit');
+                const feelsUnit = document.getElementById('feels-unit');
+
+                const originalTemp = parseFloat(tempVal.getAttribute('data-temp'));
+                const originalFeels = parseFloat(feelsVal.getAttribute('data-feels'));
+
+                if (isCelcius) {
+                    tempVal.textContent = Math.round(originalTemp * 9/5 + 32);
+                    feelsVal.textContent = Math.round(originalFeels * 9/5 + 32);
+                    tempUnit.textContent = '°F';
+                    feelsUnit.textContent = '°F';
+                } else {
+                    tempVal.textContent = originalTemp;
+                    feelsVal.textContent = originalFeels;
+                    tempUnit.textContent = '°C';
+                    feelsUnit.textContent = '°C';
+                }
+                isCelcius = !isCelcius;
+            }
+        </script>
     </body>
 </html>

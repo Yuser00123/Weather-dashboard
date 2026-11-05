@@ -34,6 +34,7 @@ def weather():
     weather_info = {
         'city': data['name'],
         'temperature': data['main']['temp'],
+        'feels_like': data['main']['feels_like'],
         'description': data['weather'][0]['description'],
         'humidity': data['main']['humidity'],
         'wind': data['wind']['speed'],
