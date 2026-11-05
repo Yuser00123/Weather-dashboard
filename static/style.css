@@ -34,6 +34,10 @@ h1{
 
 .search-box{
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
 }
 
 .weather-img{
@@ -52,6 +56,8 @@ h1{
     border-radius: 8px;
     border: 2px solid #000000;
     margin-right: 10px;
+    flex: 1;
+    min-width: 0;
 }
 
 #search-button{
@@ -148,8 +154,18 @@ body.weather-rain{
     border-radius: 6px;
     border: 2px solid #000000;
     background-color: #f1f1f1;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 5px;
 }
 
 #unit-toggle:hover{
     background-color: #e0e0e0;
+}
+
+.search-box form{
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
 }

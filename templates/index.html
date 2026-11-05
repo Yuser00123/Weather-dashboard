@@ -13,8 +13,8 @@
                 <form action="/weather" method="get">
                 <input type="text" id="place-input" name="city" placeholder="Enter a place">
                 <button id="search-button">Search</button>
-                <button id="unit-toggle" onclick="toggleUnit()">°C / °F</button>
                 </form>
+                <button id="unit-toggle" type="button" onclick="toggleUnit()">°C / °F</button>
             </div>
             <div class="output">
                 {% if error %}
