@@ -127,3 +127,15 @@ h1{
     color: #000000;
     line-height: 1.4;
 }
+
+body.weather-clear{
+    background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+}
+
+body.weather-clouds{
+    background: linear-gradient(135deg, #bdc3c7, #ecf0f1);
+}
+
+body.weather-rain{
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+}

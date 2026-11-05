@@ -6,7 +6,7 @@
         <title>Weather Dashboard</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
-    <body>
+    <body {% if weather %}class="weather-{{weather.condition}}"{% endif %}>
         <div class="main">  
             <h1>Weather Dashboard</h1>
             <div class="search-box">
